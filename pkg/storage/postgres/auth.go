@@ -35,7 +35,6 @@ func (r *AuthRepo) Register(req *pb.RegisterReq) (*pb.Void, error) {
 		tr.Rollback()
 		return nil, err
 	}
-	fmt.Println("sssssssssssssssssssss", req.Gender)
 
 	query = `INSERT INTO settings (user_id) VALUES ($1)`
 	_, err = tr.Exec(query, id)

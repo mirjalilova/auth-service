@@ -35,7 +35,6 @@ func (r *UserRepo) GetProfile(req *pb.GetById) (*pb.UserRes, error) {
             &res.PhoneNumber,
             &res.Country,
             &res.Role,
-			&res.Role,
 		)
 	if err == sql.ErrNoRows {
 		return nil, err

@@ -55,6 +55,9 @@ func (h *Handlers) RegisterUser(c *gin.Context) {
 		Password:    password,
 		FullName:    body.FullName,
 		DateOfBirth: body.DateOfBirth,
+		Gender: body.Gender,
+		PhoneNumber: body.PhoneNumber,
+        Country:     body.Country,
 	}
 
 	if !isValidEmail(req.Email) {
