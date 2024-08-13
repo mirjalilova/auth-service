@@ -1,4 +1,4 @@
-CREATE TYPE role_type AS ENUM ('admin', 'user');
+CREATE TYPE role_type AS ENUM ('admin', 'user', 'doctor');
 CREATE TYPE gender_type AS ENUM ('male', 'female', 'other');
 
 -- USER TABLE
