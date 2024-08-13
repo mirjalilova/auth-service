@@ -1,0 +1,2 @@
+[INFO]   2024/08/13 00:42:19 logger.go:41: ssssssssss
+[ERROR]  2024/08/13 00:42:19 app.go:24: can't connect to db: dial tcp 127.0.0.1:5432: connect: connection refused
