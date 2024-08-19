@@ -1,3 +1,5 @@
+version: '3.9'
+
 services:
   migrate:
     image: migrate/migrate
@@ -40,7 +42,7 @@ services:
 
   zookeeper:
     image: confluentinc/cp-zookeeper:7.4.4
-    container_name: zookeeper
+    container_name: zookeeper_medtrack
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
@@ -51,7 +53,7 @@ services:
 
   kafka:
     image: confluentinc/cp-kafka:7.4.4
-    container_name: kafka
+    container_name: kafka_medtrack
     depends_on:
       - zookeeper
     ports:
@@ -60,7 +62,7 @@ services:
       - medmon
     environment:
       KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper_medtrack:2181
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,PLAINTEXT_HOST://0.0.0.0:29092
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
@@ -68,7 +70,7 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
   
   auth-service:
-    container_name: auth
+    container_name: auth_medtrack
     build: .
     depends_on:
       - kafka
@@ -82,7 +84,7 @@ services:
       - DB_USER=postgres
       - DB_PASSWORD=feruza1727
       - DB_NAME=medmon
-      - KAFKA_BROKER=kafka:9092
+      - KAFKA_BROKER=kafka_medtrack:9092
 
 volumes:
   db:
